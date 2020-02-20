@@ -1,18 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Visualization</h2>
+  <h3>Amsterdam Map</h3>
 
-  <div class="row">
+  <div id="navigation" class="row">
+    <h4>Navigation</h4>
+  </div>
+
+  <div id="geoMap" class="row">
+
+    <div id='leafletMap'></div>
+    <script type="text/javascript" src="../static/js/amsterdam.js"></script>
     
-    <div class="column left" style="background-color:#aaa;">
-      <h2>Navigation Bar</h2>
-    </div>
-
-    <div class="column right" style="background-color:#bbb;">
-      <h2>Map of Amsterdam</h2>
-    </div>
-
   </div>
 
 {% endblock %}

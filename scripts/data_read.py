@@ -1,7 +1,6 @@
 import json
 import pandas as pd
 
-
 def read_json(file):
     # Open the file
     with open(file, 'r') as f:
