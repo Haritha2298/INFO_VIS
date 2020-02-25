@@ -69,3 +69,6 @@ metro_stop = pd.DataFrame.from_dict(metro_stop['results'])
 park = read_json('../data/park.json')
 # Create Park Dataframe
 park = pd.DataFrame.from_dict(park['results'])
+
+# Read amsterdam geo json file
+amsterdam = read_json('../data/amsterdam.json')

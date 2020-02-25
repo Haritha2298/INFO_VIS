@@ -1,39 +1,11 @@
-// function to draw the amsterdam map
-// function draw(geo_data) {
-//     "use strict";
-//     var margin = 75,
-//         width = 1400-margin,
-//         height = 600-margin;
+// LEAFLET.JS
+//set up map of amsterdam
+var map = L.map('map', {
+    scrollWheelZoom: false
 
-//     var svg = d3.select("#geoMap")
-//                 .append("svg")
-//                 .attr("width", width + margin)
-//                 .attr("height", height + margin)
-//                 .append("g")
-//                 .attr("class", "map");
+}).setView([52.3667, 4.8945], 13);
 
-//     var projection = d3.geo.mercator()
-//                            .scale(150)
-//                            .translate( [width / 2, height / 1.5]);
-    
-//     var path = d3.geo.path().projection(projection);
-
-//     var map = svg.selectAll('path')
-//                  .data(geo_data.features)
-//                  .enter()
-//                  .append('path')
-//                  .attr('d', path)
-//                  .style('fill', 'lightBlue')
-//                  .style('stroke', 'black')
-//                  .style('stroke-width', 0.5);
-// };
-
-// var adamMap = d3.json("../data/world_countries.json");
-
-// d3.json("../data/world_countries.json", draw);
-
-var adamMap = L.map('leafletMap').setView([52.3667, 4.8945], 13);
-
+// put mapbox layer on 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -41,4 +13,91 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     tileSize: 512,
     zoomOffset: -1,
     accessToken: 'pk.eyJ1Ijoibmlsc2xlaCIsImEiOiJjazZ1bDN0OWEwNjUwM21vYTB6Nmk3a3ZpIn0.mCcdD-MMyecijCUrRJKNCg'
-}).addTo(adamMap);
+}).addTo(map);
+
+// //MAPBOX.JS
+// mapboxgl.accessToken = 'pk.eyJ1IjoiZW5qYWxvdCIsImEiOiJjaWhtdmxhNTIwb25zdHBsejk0NGdhODJhIn0.2-F2hS_oTZenAWc0BMf_uw'
+    
+// //Setup mapbox-gl map
+// var map = new mapboxgl.Map({
+//     container: 'map', // container id
+//     style: 'mapbox://styles/enjalot/cihmvv7kg004v91kn22zjptsc',
+//     center: [52.3667, 4.8945],
+//     zoom: 13,
+      
+// })
+// map.scrollZoom.disable()
+// map.addControl(new mapboxgl.Navigation());
+
+
+
+// add svg element to leaflet overlay pane
+var svg = d3.select(map.getPanes().overlayPane).append("svg");
+
+var g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+// attempt to put a layer on the map with amsterdam geo json file
+// // put geoJson of Amsterdam over it
+// d3.json("amsterdam.json", function(error, collection) {
+//     if (error) throw error;
+// })
+
+// // function to render d3 polygon to leaflet polygon
+// function projectPoint(x, y) {
+//     var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+//     this.stream.point(point.x, point.y);
+// }
+
+// // convert geoJSON to svg
+// var transform = d3.geo.transform({point, projectPoint}),
+//     path = d3.geo.path().projection(transform);
+
+// var feature = g.selectAll("path")
+//     .data(collection.features)
+//     .enter().append("path");
+
+// feature.attr("d", path);
+
+// var bounds = path.bounds(collection),
+//     topLeft = bounds[0],
+//     bottomRight = bounds[1];
+
+// // set dimension of svg
+// svg.attr("width", bottomRight[0] - topLeft[0])
+//    .attr("height", bottomRight[1] - topLeft[1])
+//    .style("left", topLeft[0] + "px")
+//    .style("top", topLeft[1] + "px");
+
+// g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+// create a fisheye distortion as magnifying glass
+var fisheye = d3.fisheye.circular()
+    .radius(100)
+    .distortion(5);
+
+var lens = svg.append('circle')
+    .attr('class', 'lens')
+    .attr('fill-opacity', 0.1)
+    .attr('r', fisheye.radius());
+
+// set bounds of svg
+svg .attr("width", 1300)
+    .attr("height", 650)
+    //.style("left", topLeft[0] + "px")
+    //.style("top", topLeft[1] + "px");
+
+g   .attr("transform", "translate(" + 650 + "," + 1108 + ")");
+
+
+
+// on mousemove move the fisheye over map
+svg.on('mousemove', function() {
+    fisheye.focus(d3.mouse(this));
+
+    const mouseX = d3.mouse(this)[0];
+    const mouseY = d3.mouse(this)[1];
+    const r = fisheye.radius();
+
+    lens.attr('cx', mouseX)
+        .attr('cy', mouseY)
+});
