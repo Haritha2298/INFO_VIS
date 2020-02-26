@@ -3,29 +3,36 @@
 {% block content %}
   <h3>Amsterdam Map</h3>
 
-  <div id="navigation" class="row">
-    <h4>Navigation</h4>
-  </div>
+  <h4>Dropdown <Menu></Menu></h4>
+  
+  <!-- Build your select: -->
+  <select class='selectpicker' multiple data-live-search="true">
+    <option value="bridge">Bridges</option>
+    <option value="building">Buildings</option>
+    <option value="bus_stop">Bus Stops</option>
+    <option value="high_voltage_pylon">High Voltage Pylons</option>
+    <option value="lamp_post">Lamp Posts</option>
+    <option value="metro_stop">Metro Stops</option>
+    <option value="park">Parks</option>
+    <option value="playground">Playgrounds</option>
+    <option value="sports_field">Sports Field</option>
+    <option value="toilets">Toilets</option>
+    <option value="trafic_light">Traffic Lights</option>
+    <option value="train_stations">Train Stations</option>
+    <option value="tram_stop">Tram Stops</option>
+    <option value="trash">Trash</option>
+    <option value="tree">Trees</option>
+    <option value="wind_turbine">Wind Turbines</option>
+  </select>
+  <!-- Initialize the plugin: -->
+  <script type="text/javascript">
+  $('select').selectpicker();
+  </script>
 
-  <div id="geoMap" class="row">
 
-    <div id='map'></div>
-    <!-- <script type="text/javascript">
-      //MAPBOX.JS
-      mapboxgl.accessToken = 'pk.eyJ1Ijoibmlsc2xlaCIsImEiOiJjazczNHVscGwwOG12M3BqdDZieHJhMW82In0.c-i1H2T6u3vjmj4WY_D2mA'
+  <div id='map'></div>
+  <script type="text/javascript" src="../static/js/amsterdam.js"></script>
     
-      //Setup mapbox-gl map
-      var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v9',
-        center: [-21.9270884, 64.1436456],
-        zoom: 13,
-          
-    });
-    </script> -->
-    <script type="text/javascript" src="../static/js/amsterdam.js"></script>
-    
-  </div>
 
 {% endblock %}
 

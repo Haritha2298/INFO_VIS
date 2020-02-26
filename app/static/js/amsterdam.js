@@ -23,12 +23,11 @@ var map = new mapboxgl.Map({
   container: 'map', // container id
   style: 'mapbox://styles/mapbox/streets-v11',
   center: [4.8945, 52.3667],
-  zoom: 13,
-    
+  zoom: 13,   
 });
 
 map.addControl(new mapboxgl.NavigationControl());
-map.scrollWheelZoom.disable();
+map.scrollZoom.disable();
 
 // create some markers
 var geojson = [
@@ -48,7 +47,7 @@ var geojson = [
   }
 ];
 
-var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
+//var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
 
 
 // // add svg element to leaflet overlay pane
