@@ -3,33 +3,33 @@
 {% block content %}
   <h3>Amsterdam Map</h3>
 
-  <h4>Dropdown <Menu></Menu></h4>
+  <h5>Dropdown <Menu></Menu></h4>
   
   <!-- Build your select: -->
-  <select class='selectpicker' multiple data-live-search="true">
-    <option value="bridge">Bridges</option>
-    <option value="building">Buildings</option>
-    <option value="bus_stop">Bus Stops</option>
-    <option value="high_voltage_pylon">High Voltage Pylons</option>
-    <option value="lamp_post">Lamp Posts</option>
-    <option value="metro_stop">Metro Stops</option>
-    <option value="park">Parks</option>
-    <option value="playground">Playgrounds</option>
-    <option value="sports_field">Sports Field</option>
-    <option value="toilets">Toilets</option>
-    <option value="trafic_light">Traffic Lights</option>
-    <option value="train_stations">Train Stations</option>
-    <option value="tram_stop">Tram Stops</option>
-    <option value="trash">Trash</option>
-    <option value="tree">Trees</option>
-    <option value="wind_turbine">Wind Turbines</option>
+  <select id='dropdown-menu' class='selectpicker' multiple data-live-search="true">
+    <option value="bridge.json">Bridges</option>
+    <option value="building.json">Buildings</option>
+    <option value="bus_stop.json">Bus Stops</option>
+    <option value="high_voltage_pylon.json">High Voltage Pylons</option>
+    <option value="lamp_post.json">Lamp Posts</option>
+    <option value="metro_stop.json">Metro Stops</option>
+    <option value="park.json">Parks</option>
+    <option value="playground.json">Playgrounds</option>
+    <option value="sports_field.json">Sports Field</option>
+    <option value="toilets.json">Toilets</option>
+    <option value="trafic_light.json">Traffic Lights</option>
+    <option value="train_stations.json">Train Stations</option>
+    <option value="tram_stop.json">Tram Stops</option>
+    <option value="trash.json">Trash</option>
+    <option value="tree.json">Trees</option>
+    <option value="wind_turbine.json">Wind Turbines</option>
   </select>
   <!-- Initialize the plugin: -->
   <script type="text/javascript">
   $('select').selectpicker();
   </script>
 
-
+  <pre id='cordInfo'></pre>
   <div id='map'></div>
   <script type="text/javascript" src="../static/js/amsterdam.js"></script>
     

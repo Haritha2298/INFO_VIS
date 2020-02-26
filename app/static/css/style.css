@@ -1,3 +1,19 @@
 #map { 
     height: 650px;
-    padding-top: 25px;}
+    top: 0; 
+    bottom: 0;
+    padding-top: 20px;}
+
+#cordInfo {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: #222;
+    background: #fff;
+    }

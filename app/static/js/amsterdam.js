@@ -49,6 +49,13 @@ var geojson = [
 
 //var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
 
+// Display coordinates with mouse hover
+map.on('mousemove', function(e) {
+  document.getElementById('cordInfo').innerHTML =
+    JSON.stringify(e.point) + 
+    '<br />' +
+    JSON.stringify(e.lngLat.wrap());
+});
 
 // // add svg element to leaflet overlay pane
 // var svg = d3.select(map.getPanes().overlayPane).append("svg");
