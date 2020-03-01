@@ -6,18 +6,33 @@
   <h5>Dropdown <Menu></Menu></h4>
   
   <!-- Build your select: -->
-  <form action="{{url_for('index')}}" method = post>
+  <form action="{{url_for('index')}}" name="main" method = post>
   <!--multiple data-live-search="true"-->
   <select id='kailai' name='kailai' class='selectpicker' >
    {% for o in objects %}
    <option value = "{{o}}" >{{o}}</option>
-   
    {% endfor %}	
-
   </select>
-  <input class = "Success" type=Submit value="Post"!>
+  <input type='submit'  value="POST">
   </form>
   <!-- Initialize the plugin: -->
+  <script>
+    var form = document.forms.namedItem("main");
+    form.addEventListener('submit', function(ev) {
+      var oData = new FormData(form);
+      var oReq = new XMLHttpRequest();
+      oReq.open("POST", "{{url_for('index')}}", true);
+      oReq.onload = function(oEvent) {
+        if (oReq.status == 200) {
+          document.getElementById('kailai').value;
+        } else {
+          alert("Error " + oReq.status + " occurred when trying to upload your file")
+        }
+      };
+      oReq.send(oData);
+      ev.preventDefault();
+    }, false);
+   </script>
   <script type="text/javascript">
   $('select').selectpicker();
   </script>
