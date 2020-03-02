@@ -26,29 +26,29 @@ var map = new mapboxgl.Map({
     zoom: 13,
 });
 
-// var place = L.marker([4.8325570000000004 52.2823849999999979]).addTo(map);
+var place = L.marker([4.8325570000000004 52.2823849999999979]).addTo(map);
 
 map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
 
-// // create some markers
-// var geojson = [{
-//         type: 'Feature',
-//         geometry: {
-//             type: 'Point',
-//             coordinates: [5, 53]
-//         }
-//     },
-//     {
-//         type: 'Feature',
-//         geometry: {
-//             type: 'Point',
-//             coordinates: [4.5, 52.1]
-//         }
-//     }
-// ];
+// create some markers
+var geojson = [{
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [5, 53]
+        }
+    },
+    {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [4.5, 52.1]
+        }
+    }
+];
 
-// var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
+//var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
 
 // Display coordinates with mouse hover
 map.on('mousemove', function(e) {
