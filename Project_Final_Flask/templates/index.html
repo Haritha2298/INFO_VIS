@@ -8,7 +8,8 @@
   <!-- Build your select: -->
   <form action="{{url_for('index')}}" name="main" method = post>
   <!--multiple data-live-search="true"-->
-  <select id='kailai' name='kailai' class='selectpicker' >
+  <select id='kailai' name='kailai' class='selectpicker' multiple data-live-search="true">
+    <!-- Filling dropdown menu -->
    {% for o in objects %}
    <option value = "{{o}}" >{{o}}</option>
    {% endfor %}
