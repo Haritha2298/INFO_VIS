@@ -36,8 +36,8 @@ def index():
         print(selected_objects)
         # Kailai way of importing data [COMMENTED OUT]
         # data.read_data(selected_object)
-        # Read & Process the data
-        data.call_data(selected_objects, app.objects)
+        # Read & Process the data and receive objects dictionary
+        objects = data.call_data(selected_objects, app.objects)
     return render_template('index.html', objects=objects)
 
 

@@ -129,5 +129,5 @@ def call_data(obj_list: list, objects: dict):
         df = df.drop(singles, axis=1)
         # Assign df into the dictionary
         objects[obj]['df'] = df
-    # Return cleaned Dataframe
-    return df
+    # Return updated dictionary
+    return objects
