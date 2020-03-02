@@ -25,7 +25,7 @@
       oReq.open("POST", "{{url_for('index')}}", true);
       oReq.onload = function(oEvent) {
         if (oReq.status == 200) {
-          document.getElementById('kailai').value;
+          document.getElementById('obj_list').value;
         } else {
           alert("Error " + oReq.status + " occurred when trying to upload your file")
         }
