@@ -5,7 +5,7 @@
 
 // }).setView([52.3667, 4.8945], 13);
 
-// // put mapbox layer on 
+// // put mapbox layer on
 // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 //     maxZoom: 18,
@@ -17,44 +17,48 @@
 
 //MAPBOX.JS
 mapboxgl.accessToken = 'pk.eyJ1Ijoibmlsc2xlaCIsImEiOiJjazczNHVscGwwOG12M3BqdDZieHJhMW82In0.c-i1H2T6u3vjmj4WY_D2mA'
-    
+
 //Setup mapbox-gl map
 var map = new mapboxgl.Map({
-  container: 'map', // container id
-  style: 'mapbox://styles/mapbox/streets-v11',
-  center: [4.8945, 52.3667],
-  zoom: 13,   
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [4.8945, 52.3667],
+    zoom: 13,
 });
+
+var cat = L.icon({
+    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png',
+    iconSize: [38, 95]
+})
 
 map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
 
 // create some markers
-var geojson = [
-  {
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [5, 53]
+var geojson = [{
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [5, 53]
+        }
+    },
+    {
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [4.5, 52.1]
+        }
     }
-  },
-  {
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [4.5, 52.1]
-    }
-  }
 ];
 
-//var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
+// var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
 
 // Display coordinates with mouse hover
 map.on('mousemove', function(e) {
-  document.getElementById('cordInfo').innerHTML =
-    JSON.stringify(e.point) + 
-    '<br />' +
-    JSON.stringify(e.lngLat.wrap());
+    document.getElementById('cordInfo').innerHTML =
+        JSON.stringify(e.point) +
+        '<br />' +
+        JSON.stringify(e.lngLat.wrap());
 });
 
 // // add svg element to leaflet overlay pane
