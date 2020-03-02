@@ -12,7 +12,8 @@ def index():
                'Sports Field', 'Toilets', 'Traffic Lights', 'Train Stations',
                'Tram Stops', 'Trash', 'Trees', 'Wind Turbines']
     if request.method == "POST":
-        selected_object = request.args.get('kailai')
+        # Receive multiple objects by getlist method
+        selected_object = request.form.getlist('kailai')
         print("connection succesfull")
         print(selected_object)
         data.read_data(selected_object)
