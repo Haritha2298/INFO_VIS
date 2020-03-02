@@ -26,10 +26,6 @@ var map = new mapboxgl.Map({
     zoom: 13,
 });
 
-var cat = L.icon({
-    iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png',
-    iconSize: [38, 95]
-})
 
 map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
