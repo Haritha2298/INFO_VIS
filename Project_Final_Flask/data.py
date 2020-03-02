@@ -91,3 +91,43 @@ def read_data(selected_value):
         data = tram_data
 
     return data, main_data
+
+
+def return_singles(df):
+    # Create empty list to be returned
+    singles = list()
+    # Go through each column
+    for column in df.columns:
+        # If column has only 1 item
+        if len(df[column].unique()) == 1:
+            # Append that column name to the list
+            singles.append(column)
+    # Return singles
+    return singles
+
+
+def call_data(obj_list: list, objects: dict):
+    for obj in obj_list:
+        # Key control
+        if obj not in objects:
+            print(obj, 'is not located in the dict, please add later...')
+            continue
+        # Get data from the API
+        data = urllib.request.urlopen(
+            "https://vps.inskegroenen.nl/api/" + objects[obj]['url'])
+        # Read as json
+        data = json.loads(data.read())
+        # If count info exist in data
+        if 'count' in data:
+            # Assign count of the object
+            objects[obj]['count'] = data['count']
+        # Create dataframe from the read json file
+        df = pd.DataFrame.from_dict(data['results'])
+        # Get the unnecessary column list
+        singles = return_singles(df)
+        # Drop those unnecessary columns
+        df = df.drop(singles, axis=1)
+        # Assign df into the dictionary
+        objects[obj]['df'] = df
+    # Return cleaned Dataframe
+    return df

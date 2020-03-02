@@ -3,9 +3,27 @@ from flask import Flask, render_template, url_for, request
 import data
 
 app = Flask(__name__)
+# Objects info dictionary
+app.objects = {
+    'Advertising Columns': {
+        'count': None,
+        'df': None,
+        'url': 'advertising_column'
+    },
+    'Bridges': {
+        'count': None,
+        'df': None,
+        'url': 'bridge'
+    },
+    'Toilets': {
+        'count': None,
+        'df': None,
+        'url': 'toilet'
+    }
+}
 
 # @app.route('/')
-@app.route("/index", methods=["GET", "POST"])
+@app.route("/asd", methods=["GET", "POST"])
 def index():
     objects = ['Bridges', 'Buildings', 'Bus Stops', 'High Voltage Pylons',
                'Lamp Posts', 'Metro Stops', 'Parks', 'Playgrounds',
@@ -13,10 +31,13 @@ def index():
                'Tram Stops', 'Trash', 'Trees', 'Wind Turbines']
     if request.method == "POST":
         # Receive multiple objects by getlist method
-        selected_object = request.form.getlist('obj_list')
+        selected_objects = request.form.getlist('obj_list')
         print("connection succesfull")
-        print(selected_object)
-        data.read_data(selected_object)
+        print(selected_objects)
+        # Kailai way of importing data [COMMENTED OUT]
+        # data.read_data(selected_object)
+        # Read & Process the data
+        data.call_data(selected_objects, app.objects)
     return render_template('index.html', objects=objects)
 
 
