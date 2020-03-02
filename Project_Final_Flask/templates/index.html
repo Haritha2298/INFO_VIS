@@ -3,15 +3,15 @@
 {% block content %}
   <h3>Amsterdam Map</h3>
 
-  <h5>Dropdown <Menu></Menu></h4>
-  
+  <h5>Dropdown <Menu></Menu></h5>
+
   <!-- Build your select: -->
   <form action="{{url_for('index')}}" name="main" method = post>
   <!--multiple data-live-search="true"-->
   <select id='kailai' name='kailai' class='selectpicker' >
    {% for o in objects %}
    <option value = "{{o}}" >{{o}}</option>
-   {% endfor %}	
+   {% endfor %}
   </select>
   <input type='submit'  value="POST">
   </form>
@@ -40,7 +40,6 @@
   <pre id='cordInfo'></pre>
   <div id='map'></div>
   <script type="text/javascript" src="../static/js/amsterdam.js"></script>
-    
+
 
 {% endblock %}
-
