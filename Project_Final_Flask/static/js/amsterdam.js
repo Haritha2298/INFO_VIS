@@ -26,7 +26,7 @@ var map = new mapboxgl.Map({
     zoom: 13,
 });
 
-var place = L.marker([4.8325570000000004 52.2823849999999979]).addTo(map);
+// var place = L.marker([4.8325570000000004 52.2823849999999979]).addTo(map);
 
 map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
