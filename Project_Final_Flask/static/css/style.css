@@ -1,8 +1,9 @@
-#map { 
+#map {
     height: 650px;
-    top: 0; 
+    top: 0;
     bottom: 0;
-    padding-top: 20px;}
+    padding-top: 20px;
+}
 
 #cordInfo {
     display: block;
@@ -16,4 +17,4 @@
     text-align: center;
     color: #222;
     background: #fff;
-    }
+}

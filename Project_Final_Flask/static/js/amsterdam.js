@@ -19,14 +19,12 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoibmlsc2xlaCIsImEiOiJjazczNHVscGwwOG12M3BqdDZieHJhMW82In0.c-i1H2T6u3vjmj4WY_D2mA'
 
 //Setup mapbox-gl map
-var map = new mapboxgl.Map({
+var map = new L.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [4.8945, 52.3667],
     zoom: 13,
 });
-
-var place = L.marker([4.8325570000000004 52.2823849999999979]).addTo(map);
 
 map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
