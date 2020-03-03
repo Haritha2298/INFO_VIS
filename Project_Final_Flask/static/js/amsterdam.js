@@ -16,35 +16,46 @@
 // }).addTo(map);
 
 //MAPBOX.JS
-mapboxgl.accessToken = 'pk.eyJ1Ijoibmlsc2xlaCIsImEiOiJjazczNHVscGwwOG12M3BqdDZieHJhMW82In0.c-i1H2T6u3vjmj4WY_D2mA'
+mapboxgl.accessToken = 'pk.eyJ1Ijoibmlsc2xlaCIsImEiOiJjazczNHVscGwwOG12M3BqdDZieHJhMW82In0.c-i1H2T6u3vjmj4WY_D2mA';
 
 //Setup mapbox-gl map
-var map = new L.Map({
+var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [4.8945, 52.3667],
-    zoom: 13,
+    zoom: 13
 });
 
 map.addControl(new mapboxgl.NavigationControl());
 map.scrollZoom.disable();
 
 // create some markers
-var geojson = [{
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [5, 53]
+var geojson = {
+    type: 'FeatureCollection',
+    features: [{
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [4.89, 52.37]
+            },
+            properties: {
+                title: 'Mapbox',
+                description: 'Washington, D.C.'
+            }
+        },
+        {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [4.5, 52.1]
+            },
+            properties: {
+                title: 'Mapbox',
+                description: 'San Francisco, California'
+            }
         }
-    },
-    {
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [4.5, 52.1]
-        }
-    }
-];
+    ]
+};
 
 //var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
 
@@ -54,7 +65,59 @@ map.on('mousemove', function(e) {
         JSON.stringify(e.point) +
         '<br />' +
         JSON.stringify(e.lngLat.wrap());
+    // add markers to map
+    geojson.features.forEach(function(marker) {
+
+        // create a HTML element for each feature
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+    });
 });
+
+// map.on('load', function() {
+//     map.loadImage(
+//         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png',
+//         function(error, image) {
+//             if (error) throw error;
+//             map.addImage('cat', image);
+//             map.addSource('point', {
+//                 'type': 'geojson',
+//                 'data': {
+//                     'type': 'FeatureCollection',
+//                     'features': [{
+//                             'type': 'Feature',
+//                             'geometry': {
+//                                 'type': 'Point',
+//                                 'coordinates': [4.89, 52.37]
+//                             }
+//                         },
+//                         {
+//                             'type': 'Feature',
+//                             'geometry': {
+//                                 'type': 'Point',
+//                                 'coordinates': [4.88, 52]
+//                             }
+//                         }
+//                     ]
+//                 }
+//             });
+//             map.addLayer({
+//                 'id': 'points',
+//                 'type': 'symbol',
+//                 'source': 'point',
+//                 'layout': {
+//                     'icon-image': 'cat',
+//                     'icon-size': 0.25
+//                 }
+//             });
+//         }
+//     );
+// });
 
 // // add svg element to leaflet overlay pane
 // var svg = d3.select(map.getPanes().overlayPane).append("svg");
