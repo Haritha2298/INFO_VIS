@@ -79,6 +79,10 @@ map.on('mousemove', function(e) {
     });
 });
 
+function myFunc(vars) {
+    return vars
+}
+
 // map.on('load', function() {
 //     map.loadImage(
 //         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png',
