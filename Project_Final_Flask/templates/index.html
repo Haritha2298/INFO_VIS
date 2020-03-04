@@ -43,12 +43,14 @@
 </script>
 
 <!-- Load data in the beginning not to get error -->
-<p id="point"></p>
+<div id="holder"></div>
+
 <script>
-    var data = {{objects_data | tojson | safe}};
-    var newData = data.Toilets.df;
-    var toilet_data = JSON.parse(newData)
-    document.getElementById("point").innerHTML = toilet_data.geom[0];
+    // Receive geom_data and write in paragraphs
+    var arr = {{ geom_data | safe }};
+    var holder = document.getElementById("holder");
+    for(var i=0; i < arr.length; i++)
+        holder.innerHTML += "<p>"+arr[i].geometry.coordinates+"</p><br>";
 </script>
 
 <!-- Load coordinates -->
