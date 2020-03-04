@@ -158,13 +158,13 @@ def transform_geom():
         points = re.split(r'\s', d['geom'])
         # Get point type
         point_type = points[0]
-        # Assign point type
-        geom_example['geometry']['type'] = point_type
         # Assign description
         geom_example['properties']['name'] = desc
         # Assigning long and lat according to the point type
         # If it is point
         if point_type == 'POINT':
+            # Assign point type
+            geom_example['geometry']['type'] = 'Point'
             # Use this structure
             # Replace unnecessary char for lng
             lng = float(points[1].replace('(', ''))
