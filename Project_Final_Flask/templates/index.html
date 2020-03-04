@@ -48,9 +48,9 @@
 <script>
     // Receive geom_data and write in paragraphs
     var arr = {{ geom_data | safe }};
-    var holder = document.getElementById("holder");
-    for(var i=0; i < arr.length; i++)
-        holder.innerHTML += "<p>"+arr[i].geometry.coordinates+"</p><br>";
+    // var holder = document.getElementById("holder");
+    // for(var i=0; i < arr.length; i++)
+    //     holder.innerHTML += "<p>"+arr[i].geometry.coordinates+"</p><br>";
 </script>
 
 <!-- Load coordinates -->
