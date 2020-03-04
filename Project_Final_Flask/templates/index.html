@@ -46,9 +46,9 @@
 <p id="point"></p>
 <script>
     var data = {{objects_data | tojson | safe}};
-    var newData = data.Bridges.df;
-    var bridge_data = JSON.parse(newData)
-    document.getElementById("point").innerHTML = bridge_data.geom[0];
+    var newData = data.Toilets.df;
+    var toilet_data = JSON.parse(newData)
+    document.getElementById("point").innerHTML = toilet_data.geom[0][0];
 </script>
 
 <!-- Load coordinates -->

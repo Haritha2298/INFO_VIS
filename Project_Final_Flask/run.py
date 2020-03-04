@@ -31,7 +31,8 @@ def index():
                'Tram Stops', 'Trash', 'Trees', 'Wind Turbines']
     # Load only Bridges data in the beginning
     # This can be changed to couple more later ...
-    objects_data = data.call_data(['Bridges'], app.objects)
+    objects_data = data.call_data(['Toilets'], app.objects)
+    print(objects_data)
     if request.method == "POST":
         # Receive multiple objects by getlist method
         selected_objects = request.form.getlist('obj_list')
