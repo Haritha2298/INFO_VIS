@@ -65,6 +65,7 @@ map.on('mousemove', function(e) {
         JSON.stringify(e.point) +
         '<br />' +
         JSON.stringify(e.lngLat.wrap());
+        
     // add markers to map
     geojson.features.forEach(function(marker) {
 
@@ -78,6 +79,8 @@ map.on('mousemove', function(e) {
             .addTo(map);
     });
 });
+
+
 
 // map.on('load', function() {
 //     map.loadImage(

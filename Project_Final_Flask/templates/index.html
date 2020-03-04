@@ -41,7 +41,19 @@
 <script type="text/javascript">
     $('select').selectpicker();
 </script>
+
+<!-- Load data in the beginning not to get error -->
+<p id="point"></p>
+<script>
+    var data = {{objects_data | tojson | safe}};
+    var newData = data.Bridges.df;
+    var bridge_data = JSON.parse(newData)
+    document.getElementById("point").innerHTML = bridge_data.geom[0];
+</script>
+
+<!-- Load coordinates -->
 <pre id='cordInfo'></pre>
+<!-- Load map -->
 <div id='map'></div>
 
 <script type="text/javascript" src="../static/js/amsterdam.js"></script>
