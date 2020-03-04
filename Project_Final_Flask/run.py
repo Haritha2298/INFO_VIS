@@ -29,6 +29,9 @@ def index():
                'Lamp Posts', 'Metro Stops', 'Parks', 'Playgrounds',
                'Sports Field', 'Toilets', 'Traffic Lights', 'Train Stations',
                'Tram Stops', 'Trash', 'Trees', 'Wind Turbines']
+    # Load only Bridges data in the beginning
+    # This can be changed to couple more later ...
+    objects_data = data.call_data(['Bridges'], app.objects)
     if request.method == "POST":
         # Receive multiple objects by getlist method
         selected_objects = request.form.getlist('obj_list')
@@ -39,7 +42,7 @@ def index():
         # Read & Process the data and receive objects dictionary
         objects_data = data.call_data(selected_objects, app.objects)
         return render_template('index.html', objects=objects, objects_data=objects_data)
-    return render_template('index.html', objects=objects)
+    return render_template('index.html', objects=objects, objects_data=objects_data)
 
 
 if __name__ == "__main__":
