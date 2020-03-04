@@ -127,7 +127,7 @@ def call_data(obj_list: list, objects: dict):
         singles = return_singles(df)
         # Drop those unnecessary columns
         df = df.drop(singles, axis=1)
-        # Assign df into the dictionary
-        objects[obj]['df'] = df
+        # Assign df, as converted to json format, into the dictionary
+        objects[obj]['df'] = df.to_json()
     # Return updated dictionary
     return objects
