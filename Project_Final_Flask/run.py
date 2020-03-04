@@ -32,7 +32,10 @@ def index():
     # Load only Bridges data in the beginning
     # This can be changed to couple more later ...
     objects_data = data.call_data(['Toilets'], app.objects)
-    print(objects_data)
+    geom_data = data.transform_geom()
+    # geom_data = {
+    #     'geom_data': geom_data
+    # }
     if request.method == "POST":
         # Receive multiple objects by getlist method
         selected_objects = request.form.getlist('obj_list')
@@ -42,8 +45,12 @@ def index():
         # data.read_data(selected_object)
         # Read & Process the data and receive objects dictionary
         objects_data = data.call_data(selected_objects, app.objects)
-        return render_template('index.html', objects=objects, objects_data=objects_data)
-    return render_template('index.html', objects=objects, objects_data=objects_data)
+        return render_template('index.html', objects=objects,
+                                            objects_data=objects_data,
+                                            geom_data=geom_data)
+    return render_template('index.html', objects=objects,
+                                        objects_data=objects_data,
+                                        geom_data=geom_data)
 
 
 if __name__ == "__main__":
