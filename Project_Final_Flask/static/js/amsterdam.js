@@ -47,7 +47,7 @@ var geojson = {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [4.5, 52.1]
+                coordinates: [4.89, 52.36]
             },
             properties: {
                 title: 'Mapbox',
