@@ -1,6 +1,7 @@
 import urllib
 import json
 import pandas as pd
+import re
 
 
 def read_data(selected_value):
@@ -133,5 +134,43 @@ def call_data(obj_list: list, objects: dict):
     return objects
 
 
-def transform_geom(geom_data):
-    pass
+def transform_geom():
+    geom_example = {
+        "type": "Feature",
+        "geometry": {
+            "type": None,
+            "coordinates": None
+        },
+        "properties": {
+            "name": None
+        }
+    }
+    geom_data = list()
+    # Get data from the API
+    data = urllib.request.urlopen(
+        "https://vps.inskegroenen.nl/api/" + 'toilet')
+    # Read as json
+    data = json.loads(data.read())['results']
+    for d in data:
+        # Get description from data
+        desc = d['description']
+        # Split geom data for long, lat, and point type
+        points = re.split(r'\s', d['geom'])
+        # Get point type
+        point_type = points[0]
+        # Assign point type
+        geom_example['geometry']['type'] = point_type
+        # Assign description
+        geom_example['properties']['name'] = desc
+        # Assigning long and lat according to the point type
+        # If it is point
+        if point_type == 'POINT':
+            # Use this structure
+            # Replace unnecessary char for lng
+            lng = float(points[1].replace('(', ''))
+            # Replace unnecessary char for lat
+            lat = float(points[2].replace(')', ''))
+            # Assign lng and lat
+            geom_example['geometry']['coordinates'] = [lng, lat]
+        geom_data.append(geom_example)
+    return geom_data
