@@ -32,29 +32,7 @@ map.scrollZoom.disable();
 // create some markers
 var geojson = {
     type: 'FeatureCollection',
-    features: [{
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: [4.89, 52.37]
-            },
-            properties: {
-                title: 'Mapbox',
-                description: 'Washington, D.C.'
-            }
-        },
-        {
-            type: 'Feature',
-            geometry: {
-                type: 'Point',
-                coordinates: [4.89, 52.36]
-            },
-            properties: {
-                title: 'Mapbox',
-                description: 'San Francisco, California'
-            }
-        }
-    ]
+    features: arr
 };
 
 //var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
