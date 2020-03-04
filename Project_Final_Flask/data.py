@@ -131,3 +131,7 @@ def call_data(obj_list: list, objects: dict):
         objects[obj]['df'] = df.to_json()
     # Return updated dictionary
     return objects
+
+
+def transform_geom(geom_data):
+    pass
