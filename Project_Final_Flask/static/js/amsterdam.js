@@ -38,27 +38,46 @@ var geojson = {
 //var myLayer = L.mapbox.featureLayer().setGeoJson(geojson).addTo(map);
 
 // Display coordinates with mouse hover
-map.on('mousemove', function(e) {
-    document.getElementById('cordInfo').innerHTML =
-        JSON.stringify(e.point) +
-        '<br />' +
-        JSON.stringify(e.lngLat.wrap());
-        
-    // add markers to map
-    geojson.features.forEach(function(marker) {
+// map.on('mousemove', function(e) {
+//     document.getElementById('cordInfo').innerHTML =
+//         JSON.stringify(e.point) +
+//         '<br />' +
+//         JSON.stringify(e.lngLat.wrap());
 
-        // create a HTML element for each feature
-        var el = document.createElement('div');
-        el.className = 'marker';
+//     // add markers to map
+//     geojson.features.forEach(function(marker) {
 
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker(el)
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
+//         // create a HTML element for each feature
+//         var el = document.createElement('div');
+//         el.className = 'marker';
+
+//         // make a marker for each feature and add to the map
+//         new mapboxgl.Marker(el)
+//             .setLngLat(marker.geometry.coordinates)
+//             .addTo(map);
+//     });
+// });
+
+map.on("load", function() {
+    /* Image: An image is loaded and added to the map. */
+    map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
+        if (error) throw error;
+        map.addImage("custom-marker", image);
+        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+        map.addLayer({
+            id: "markers",
+            type: "symbol",
+            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+            source: {
+                type: "geojson",
+                data: geojson
+            },
+            layout: {
+                "icon-image": "custom-marker",
+            }
+        });
     });
 });
-
-
 
 // map.on('load', function() {
 //     map.loadImage(
